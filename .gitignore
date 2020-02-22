@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+/json_spirit_v2.03/json_test/Debug
+/learning-jsoncpp/Debug
+/learning-jsoncpp/x64/Debug
+/Setup/Debug
+/VyperDisplayManager/Debug
+/VyperDisplayManager/x64/Debug
+/VyperDisplayManager/VyperDisplayManager.vcxproj.user
+/VyperDisplayManager/VyperDisplayManager.vcxproj.filters
+/x64/Debug
+/json_spirit_v2.03/json_spirit/Debug
+/json_spirit_v2.03/json_demo/Debug
+/Debug
+/.vs

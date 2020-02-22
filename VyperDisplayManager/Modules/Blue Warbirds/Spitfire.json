@@ -1,0 +1,19 @@
+[
+	{
+		"name": "Spitfire_LF_MkIX",
+		"displayName": "Spitfire LF Mk IX",
+		"fileName": "Spitfire_LF_MkIX\\DCS SpitLFIX MFD.jpg",
+		"configurations": [
+			{
+				"name": "LMFD_Spitfire_LF_MkIX"
+			},
+			{
+				"name": "WHKEY_Spitfire_LF_MkIX",
+				"filename": "Spitfire_LF_MkIX\\DCS SpitLFIX THROTTLE.jpg"
+			},
+			{
+				"name": "RMFD_Spitfire_LF_MkIX"
+			}
+		]
+	}
+]
