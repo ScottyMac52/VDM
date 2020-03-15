@@ -1,0 +1,17 @@
+{
+	"name": "F-5E",
+	"displayName": "F-5E Tiger II",
+	"fileName": "F-5E\\DCS F5E MFD.jpg",
+	"configurations": [
+		{
+			"name": "LMFD_F-5E"
+		},
+		{
+			"name": "WHKEY_F-5E",
+			"filename": "F-5E\\DCS F5E THROTTLE.JPG"
+		},
+		{
+			"name": "RMFD_F-5E"
+		}
+	]
+}

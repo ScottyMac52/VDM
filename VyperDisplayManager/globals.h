@@ -6,9 +6,6 @@
 #include <gdiplus.h>
 using namespace Gdiplus;
 #pragma comment (lib,"Gdiplus.lib")
-#include "json.h"
-#include "JsonObject.h"
-
 #define DLL_EXPORT   __declspec( dllexport )
 #define SQUARE(a) (float) (a * a)
 #define FLOAT_PI (float) M_PI
@@ -23,3 +20,6 @@ using namespace Gdiplus;
 
 #define IsNegative(x) (bool) (x < 0.00F)
 #define IsZero(x) (bool) (x == 0.00F)
+
+using namespace std;
+using namespace json;

@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "globals.h"
+#include "json_check.h"
 #include "Location.h"
 #include "Area.h"
 #include "OffsetGeometry.h"
 
-using namespace Json;
+using namespace json;
 using namespace std;
 
 offset_geometry::offset_geometry() : area(0,0,0,0)
@@ -31,11 +32,11 @@ offset_geometry::offset_geometry(const location& top_left, const  int width, con
 	offset_bottom_ = crop_offset.get_bottom();
 }
 
-std::wstring offset_geometry::toString() const
+std::wstring offset_geometry::to_string() const
 {
 	std::wostringstream oss;
 	oss << std::fixed << std::showpoint;
-	oss << get_area().toString();
+	oss << get_area().to_string();
 	std::wstring buffer = oss.str();
 	return buffer;
 }
@@ -136,11 +137,65 @@ offset_geometry& offset_geometry::operator += (const offset_geometry& ref)
 
 offset_geometry& offset_geometry::operator=(const offset_geometry& ref)
 {
+	set_area(ref.get_area());
+	set_cropping_area(ref.get_cropping_area());
 	opacity_ = ref.opacity_;
 	use_as_switch_ = ref.use_as_switch_;
-	set_location(ref.get_location());
-	set_width(ref.get_width());
-	set_height(ref.get_height());
 	center_ = ref.center_;
 	return *this;
+}
+
+json::Object offset_geometry::to_json_object() const
+{
+	auto object = area::to_json_object();
+	set_object_property(object, L"useAsSwitch", get_use_as_switch());
+	set_object_property(object, L"opacity", opacity_);
+	set_object_property(object, L"center", center_);
+	set_object_property(object, L"xOffsetStart", offset_left_);
+	set_object_property(object, L"xOffsetFinish", offset_right_);
+	set_object_property(object, L"yOffsetStart", offset_top_);
+	set_object_property(object, L"yOffsetFinish", offset_bottom_);
+	return object;
+}
+
+void offset_geometry::from_json_object(const json::Object& object)
+{
+	auto left = 0, top = 0, right = 0, bottom = 0;
+	area::from_json_object(object);
+	if(property_exists(object, L"xOffsetStart"))
+	{
+		left = Integer(object[L"xOffsetStart"]).Value();
+	}
+
+	if (property_exists(object, L"xOffsetFinish"))
+	{
+		right = Integer(object[L"xOffsetFinish"]).Value();
+	}
+
+	if (property_exists(object, L"yOffsetStart"))
+	{
+		top = Integer(object[L"yOffsetStart"]).Value();
+	}
+
+	if (property_exists(object, L"yOffsetFinish"))
+	{
+		bottom = Integer(object[L"yOffsetFinish"]).Value();
+	}
+	set_cropping_area(area(left, top, right, bottom));
+
+	if(property_exists(object, L"useAsSwitch"))
+	{
+		set_use_as_switch(Boolean(object[L"useAsSwitch"]).Value());
+	}
+
+	if (property_exists(object, L"opacity"))
+	{
+		set_opacity(Number(object[L"opacity"]).Value());
+	}
+
+	if (property_exists(object, L"center"))
+	{
+		set_use_as_switch(Boolean(object[L"center"]).Value());
+	}
+
 }

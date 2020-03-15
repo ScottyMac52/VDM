@@ -6,8 +6,11 @@
 
 #ifndef PCH_H
 #define PCH_H
+#include "../../cajun-jsonapi-wide/include/cajun/json/elements.h"
+#include "../../cajun-jsonapi-wide/include/cajun/json/reader.h"
+#include "../../cajun-jsonapi-wide/include/cajun/json/writer.h"
+#include "../../cajun-jsonapi-wide/include/cajun/json/visitor.h"
 
 // add headers that you want to pre-compile here
 #include "framework.h"
-
 #endif //PCH_H

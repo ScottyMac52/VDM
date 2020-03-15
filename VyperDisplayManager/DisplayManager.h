@@ -1,6 +1,8 @@
 #pragma once
-#include "DisplayWindow.h"
-using namespace std;
+
+class display_window;
+class file_checker;
+class module_definition;
 
 typedef std::map<int, display_window*> display_window_map;
 typedef std::pair<int, display_window*> display_window_pair;
@@ -17,11 +19,7 @@ public:
 	/// Adds a DisplayWindow to the map using the ConfigurationDefinition
 	/// </summary>
 	/// <param name="config"></param>
-	void AddConfiguration(const configuration_definition& config);
-	/// <summary>
-	/// Reads all sources of ConfigurationDefinition
-	/// </summary>
-	void ReadConfigurations();
+	void add_configuration(const configuration_definition& config);
 	/// <summary>
 	/// Closes all Windows 
 	/// </summary>
@@ -31,6 +29,16 @@ public:
 	/// </summary>
 	/// <param name="index"></param>
 	void remove_configuration(const int index);
+	void run(HINSTANCE const h_instance, HWND const h_wnd, std::vector<std::wstring> command_line);
+	[[nodiscard]] std::wstring get_selected_module() const;
+	[[nodiscard]] std::wstring get_selected_sub_modules() const;
+protected:
+	display_window_map configuration_map_;
+	module_definition *pmodule_definition_;
+	/// <summary>
+	/// Reads all sources of ConfigurationDefinition
+	/// </summary>
+	void read_configurations();
 	/// <summary>
 	/// Creates all of the Windows
 	/// </summary>
@@ -40,8 +48,10 @@ public:
 	/// Shows all windows
 	/// </summary>
 	void show_all();
-protected:
-	display_window_map configuration_map_;
 private:
+	bool b_button_down_ = false;
+	std::wstring selected_module_;
+	std::wstring selected_sub_modules_;
+	file_checker file_checker_;
 };
 

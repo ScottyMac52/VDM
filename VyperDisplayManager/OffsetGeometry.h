@@ -1,32 +1,36 @@
 #pragma once
+
+// Forward declaration
+class area;
+
 class offset_geometry :
 	public area
 {
 public:
 	offset_geometry();
 	offset_geometry(const location& top_left, const int width, const int height, const area& crop_offset = area(0,0,0,0));
-	virtual std::wstring toString() const override;
+	[[nodiscard]] virtual std::wstring to_string() const override;
 	virtual ~offset_geometry();
 	/// <summary>
 	/// Get the use_as_switch setting
 	/// </summary>
 	/// <returns>bool</returns>
-	bool get_use_as_switch() const;
+	[[nodiscard]] bool get_use_as_switch() const;
 	/// <summary>
 	/// Get the opacity setting
 	/// </summary>
 	/// <returns>float</returns>
-	float get_opacity() const;
+	[[nodiscard]] float get_opacity() const;
 	/// <summary>
 	/// Gets the current Area
 	/// </summary>
 	/// <returns>Area</returns>
-	area get_area() const;
+	[[nodiscard]] area get_area() const;
 	/// <summary>
 	/// Gets the center setting
 	/// </summary>
 	/// <returns>bool</returns>
-	bool  get_center() const;
+	[[nodiscard]] bool  get_center() const;
 	/// <summary>
 	/// Sets the current Area
 	/// </summary>
@@ -47,7 +51,7 @@ public:
 	/// Gets the Area that will be cropped 
 	/// </summary>
 	/// <returns></returns>
-	area get_cropping_area() const;
+	[[nodiscard]] area get_cropping_area() const;
 	/// <summary>
 	/// Sets the area to crop
 	/// </summary>
@@ -59,6 +63,8 @@ public:
 	offset_geometry& operator -= (const offset_geometry& ref);
 	offset_geometry& operator += (const offset_geometry& ref);
 	offset_geometry& operator = (const offset_geometry& ref);
+	[[nodiscard]] virtual json::Object to_json_object() const override;
+	virtual void from_json_object(const json::Object& object) override;
 protected:
 	int offset_left_;
 	int offset_top_;
@@ -67,6 +73,6 @@ protected:
 private:
 	bool use_as_switch_;
 	float opacity_;
-	bool center_{};
+	bool center_;
 };
 

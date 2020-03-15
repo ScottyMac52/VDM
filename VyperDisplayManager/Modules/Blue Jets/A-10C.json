@@ -2,6 +2,7 @@
 	{
 		"name": "A-10C",
 		"displayName": "A-10C Warthog",
+		"filePath": "E:\\HOTAS\\TARGET\\CTS\\Docs\\Profile JPGs",
 		"fileName": "A-10C\\DCS A10C MFD.jpg",
 		"configurations": [
 			{
@@ -9,7 +10,8 @@
 			},
 			{
 				"name": "WHKEY_Warthog",
-				"fileName": "A-10C\\DCS A10C THROTTLE.JPG"
+				"fileName": "A-10C\\DCS A10C WH.JPG",
+				"opacity": 0.35
 			},
 			{
 				"name": "RMFD_Warthog"

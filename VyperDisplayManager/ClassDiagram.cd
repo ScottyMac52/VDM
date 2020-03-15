@@ -1,42 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="ConfigurationDefinition">
+  <Class Name="configuration_definition">
     <Position X="9" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAACiAAAAgAAAQACAIABAAAAAAACAAoAIAAQIBAIQA=</HashCode>
+      <HashCode>AAAACiAAEAgAAAQACAIABAEAAAAACAAIAIABQIBAIQA=</HashCode>
       <FileName>ConfigurationDefinition.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="image_map_" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="DisplayManager">
-    <Position X="18.25" Y="0.5" Width="2" />
-    <AssociationLine Name="configurationMap" Type="DispWindowMap">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.461" Y="0.36" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>AAAQAAAAAAAIAQAAAAAAAAAQAABAAAAAAAAQAAAAAAQ=</HashCode>
-      <FileName>DisplayManager.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="configurationMap" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="FileChecker">
-    <Position X="15.25" Y="4" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AACAAAAAAAAAEAAAAAAEAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
-      <FileName>FileChecker.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="std::map&lt;_Kty, _Ty, _Pr, _Alloc&gt;" Collapsed="true">
-    <Position X="18.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAEAAAAABAAACwAAAAAAAAAAEBBAABgQAgAAAAAAA=</HashCode>
-      <FileName>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.24.28314\include\map</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JsonObject">
@@ -44,30 +12,6 @@
     <TypeIdentifier>
       <HashCode>ABgAAAAAAQAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAA=</HashCode>
       <FileName>JsonObject.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ImageConfiguration">
-    <Position X="8.75" Y="5.75" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAQAEAACAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ImageConfiguration.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ModuleDefinition">
-    <Position X="12.5" Y="2.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAIAAEAAUAAEQAAABCAAQAAAAAAIAAIAEEAAAAAAA=</HashCode>
-      <FileName>ModuleDefinition.h</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="_configurations" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="std::vector&lt;_Ty, _Alloc&gt;" Collapsed="true">
-    <Position X="12.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AWAEk4EqCrBsCEBAAOMIIAAyAAUEQBIghQkwgkAFUko=</HashCode>
-      <FileName>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.24.28314\include\vector</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="location">
@@ -91,19 +35,5 @@
       <FileName>OffsetGeometry.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Typedef Name="DispWindowMap" Collapsed="true">
-    <Position X="17.5" Y="4" Width="3.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DisplayManager.h</FileName>
-    </TypeIdentifier>
-  </Typedef>
-  <Typedef Name="ImageConfigMap" Collapsed="true">
-    <Position X="12.75" Y="7" Width="4.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ConfigurationDefinition.h</FileName>
-    </TypeIdentifier>
-  </Typedef>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

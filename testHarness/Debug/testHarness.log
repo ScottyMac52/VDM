@@ -1,0 +1,3 @@
+﻿  testHarness.cpp
+C:\Users\Scott\Source\Repos\VDM\testHarness\testHarness.cpp(57,19): warning C4834: discarding return value of function with 'nodiscard' attribute
+  testHarness.vcxproj -> C:\Users\Scott\Source\Repos\VDM\Debug\testHarness.exe

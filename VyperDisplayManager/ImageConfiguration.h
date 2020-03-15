@@ -6,6 +6,9 @@ public:
 	image_configuration();
 	image_configuration(LPCWSTR name, LPCWSTR file_path, LPCWSTR file_name, const float opacity, const area& image_area, const area& cropping_area);
 	~image_configuration();
+	[[nodiscard]] virtual std::wstring to_string() const override;
+	[[nodiscard]] virtual json::Object to_json_object() const override;
+	virtual void from_json_object(const json::Object& object) override;
 protected:
 private:
 	std::wstring file_name_;
