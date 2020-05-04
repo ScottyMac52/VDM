@@ -1,0 +1,17 @@
+{
+	"Delicious Beers" : [
+		{
+			"Name" : "Schlafly American Pale Ale",
+			"Origin" : "St. Louis, MO, USA",
+			"ABV" : 3.7999999999999998224,
+			"BottleConditioned" : true
+		},
+		{
+			"Name" : "John Smith's Extra Smooth",
+			"Origin" : "Tadcaster, Yorkshire, UK",
+			"ABV" : 3.7999999999999998224,
+			"BottleConditioned" : false
+		}
+	],
+	"AnotherMember" : 0
+}

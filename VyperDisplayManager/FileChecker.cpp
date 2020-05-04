@@ -1,25 +1,32 @@
 #include "pch.h"
-#include "globals.h"
-#include <fstream>
+#include <string>
+#include <filesystem>
+#include <vector>
 #include "FileChecker.h"
-#include <codecvt>
 
 using namespace std;
+//namespace fs = std::filesystem;
 
-bool file_checker::validate_file(const std::wstring& full_path)
+std::vector<std::wstring> file_checker::get_modules(const std::wstring& file_spec) const
 {
-	using convert_type = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_type, wchar_t> converter;
-	const auto converted_str = converter.to_bytes(full_path);
-	struct stat buffer;
-	const auto b_exist = (stat(converted_str.c_str(), &buffer) == 0);
-	return b_exist;
-}
+	auto files_list = std::vector<std::wstring>();
 
-std::wstring file_checker::get_current_directory()
-{
-	wchar_t buffer[MAX_PATH]; 
-	GetModuleFileName(nullptr, buffer, MAX_PATH);
-	const auto pos = wstring(buffer).find_last_of(L"\\/");
-	return wstring(buffer).substr(0, pos);
+	/*
+	const auto module_directory = fs::current_path();
+	const std::wstring modules = L"\\Modules";
+	std::wstring full_path = module_directory;
+	full_path.append(modules);
+	auto counter = 0;
+	for (auto& p : fs::recursive_directory_iterator(full_path))
+	{
+		if(p.path().extension() == L".json")
+		{
+			if(file_spec == L"*" || (file_spec != L"*" && p.path().filename().wstring().find(file_spec) != std::wstring::npos))
+			{
+				files_list.push_back(p.path());
+			}
+		}
+	}
+	*/
+	return files_list;
 }

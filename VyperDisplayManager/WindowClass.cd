@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="generic_window">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EFAQhxAAAAQEEACgABgAgIgAAAECAAAEZIJIAIgAQCY=</HashCode>
+      <FileName>generic_window.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="display_main_window">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAABBAAAAAAQAAAAEAAAAAAAAAAAEAAAIBAAAEAwAU=</HashCode>
+      <FileName>display_main_window.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="app_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="display_window">
+    <Position X="4" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAgAAAAAAFABAAgAgAAAgAAAAAAAAAAAFEAIAAQAA=</HashCode>
+      <FileName>DisplayWindow.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="p_config_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="display_manager">
+    <Position X="6.75" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAEQAgAgAAAIIAAAgAAEAAAYAACAAAAgAkAQACCAAAA=</HashCode>
+      <FileName>DisplayManager.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="configuration_map_" />
+      <Field Name="pmodule_definition_" />
+      <Field Name="file_checker_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="module_definition">
+    <Position X="10.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAgEAgAAAUQAAIAQAAAAAAAIAAAAQQAAIBAIAA=</HashCode>
+      <FileName>ModuleDefinition.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="configurations_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="std::vector&lt;_Ty, _Alloc&gt;" Collapsed="true">
+    <Position X="14.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AWAEk4EqCrBsCEBAAOMIIAAyAAUEQBIghQkwgkAFUko=</HashCode>
+      <FileName>C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.24.28314\include\vector</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="configuration_definition">
+    <Position X="3.75" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAACiAAEAgAAAQACAIABAEAAAAACAAIAIABQIBAIQA=</HashCode>
+      <FileName>ConfigurationDefinition.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="main">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAEAAAAAAAAAAAAAAgAAAAAAAABAAAAAAQ=</HashCode>
+      <FileName>main.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="offset_geometry">
+    <Position X="7.5" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAVAAAIAAgAgARAAQAAQBUIGACAAIAIAAAAkAAAAABA=</HashCode>
+      <FileName>OffsetGeometry.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="area">
+    <Position X="11" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAABAACACAwwToAABwIAAAAAAAAIAAAgAAAgpAE=</HashCode>
+      <FileName>Area.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="location">
+    <Position X="14" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAQAAAAAAgAABQYCAABAEAAAAgAgAACAIAA=</HashCode>
+      <FileName>Location.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonObject">
+    <Position X="17" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAAAAAAQAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>JsonObject.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="display_configuration">
+    <Position X="9.25" Y="5" Width="1.75" />
+    <InheritanceLine Type="offset_geometry" FixedFromPoint="true">
+      <Path>
+        <Point X="10.125" Y="8.75" />
+        <Point X="10.125" Y="7.261" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAQAAIAAIAA=</HashCode>
+      <FileName>DisplayConfiguration.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="file_checker">
+    <Position X="6.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileChecker.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="file_logger">
+    <Position X="0.5" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQEAAAAAAA0AIEAQAAAAAAAAgAAAAAAABAAAAABQAAk=</HashCode>
+      <FileName>file_logger.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="image_configuration">
+    <Position X="11.25" Y="5" Width="2.75" />
+    <InheritanceLine Type="offset_geometry" FixedFromPoint="true">
+      <Path>
+        <Point X="10.125" Y="8.75" />
+        <Point X="10.125" Y="8.021" />
+        <Point X="12.625" Y="8.021" />
+        <Point X="12.625" Y="7.646" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAgAAAAAAIAAAAAAAAAIAAAABAIAI=</HashCode>
+      <FileName>ImageConfiguration.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Typedef Name="display_window_map" Collapsed="true">
+    <Position X="14.25" Y="4.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DisplayManager.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

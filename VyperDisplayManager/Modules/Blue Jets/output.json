@@ -1,0 +1,40 @@
+[
+	{
+		"name" : "F-14R",
+		"displayName" : "F-14B Tomcat (RIO)",
+		"filePath" : "E:\\HOTAS\\TARGET\\CTS\\Docs\\Profile JPGs",
+		"fileName" : "F-14\\DCS F14RIO MFD.jpg",
+		"configurations" : [
+			{
+				"name" : "LMFD_TomcatRIO",
+				"filePath" : "E:\\HOTAS\\TARGET\\CTS\\Docs\\Profile JPGs",
+				"fileName" : "F-14\\DCS F14RIO MFD.jpg",
+				"moduleName" : "F-14R",
+				"enabled" : false,
+				"useAsSwitch" : true,
+				"makeOpaque" : true,
+				"center" : false
+			},
+			{
+				"name" : "WHKEY_TomcatRIO",
+				"filePath" : "E:\\HOTAS\\TARGET\\CTS\\Docs\\Profile JPGs",
+				"fileName" : "F-14\\DCS F14RIO THROTTLE.JPG",
+				"moduleName" : "F-14R",
+				"enabled" : false,
+				"useAsSwitch" : false,
+				"makeOpaque" : false,
+				"center" : false
+			},
+			{
+				"name" : "RMFD_TomcatRIO",
+				"filePath" : "E:\\HOTAS\\TARGET\\CTS\\Docs\\Profile JPGs",
+				"fileName" : "F-14\\DCS F14RIO MFD.jpg",
+				"moduleName" : "F-14R",
+				"enabled" : true,
+				"useAsSwitch" : false,
+				"makeOpaque" : true,
+				"center" : false
+			}
+		]
+	}
+]
