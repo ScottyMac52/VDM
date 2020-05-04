@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="app_settings.h" />
     <ClInclude Include="ConfigurationDefinition.h" />
     <ClInclude Include="DisplayConfiguration.h" />
     <ClInclude Include="DisplayManager.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="app_settings.cpp" />
     <ClCompile Include="ConfigurationDefinition.cpp" />
     <ClCompile Include="DisplayConfiguration.cpp" />
     <ClCompile Include="DisplayManager.cpp" />
@@ -213,6 +215,7 @@
     <Image Include="VyperDisplayManager.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="appsettings.json" />
     <None Include="ClassDiagram.cd" />
     <None Include="WindowClass.cd" />
   </ItemGroup>

@@ -12,15 +12,15 @@
 using namespace std;
 using namespace json;
 
-std::wstring display_configuration::get_name() const
+std::wstring display_configuration::get_key() const
 {
-	return name_;
+	return key_;
 }
 
 json::Object display_configuration::to_json_object() const
 {
 	auto object = offset_geometry::to_json_object();
-	set_object_property(object, L"name", name_);
+	set_object_property(object, L"key", key_);
 	return object;
 }
 
@@ -29,7 +29,7 @@ void display_configuration::from_json_object(const json::Object& object)
 	offset_geometry::from_json_object(object);
 	if(property_exists(object, L"name"))
 	{
-		name_ = String(object[L"name"]).Value();
+		key_ = String(object[L"key"]).Value();
 	}
 }
 
@@ -78,9 +78,9 @@ list<display_configuration> display_configuration::from_json(std::wstringstream&
 
 display_configuration& display_configuration::operator=(const json::Object& object)
 {
-	if (json_check::property_exists(object, L"name"))
+	if (json_check::property_exists(object, L"key"))
 	{
-		name_ = String(object[L"name"]).Value();
+		key_ = String(object[L"key"]).Value();
 	}
 	offset_geometry::from_json_object(object);
 	return *this;

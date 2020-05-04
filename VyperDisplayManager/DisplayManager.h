@@ -10,7 +10,8 @@ typedef std::pair<int, display_window*> display_window_pair;
 /// <summary>
 /// Class manages the list of Displays for a Module and the ConfigurationDefinition for each
 /// </summary>
-class display_manager
+class display_manager :
+	public json_check
 {
 public:
 	display_manager();
@@ -29,7 +30,7 @@ public:
 	/// </summary>
 	/// <param name="index"></param>
 	void remove_configuration(const int index);
-	void run(HINSTANCE const h_instance, HWND const h_wnd, std::vector<std::wstring> command_line);
+	bool run(HINSTANCE const h_instance, HWND const h_wnd, std::vector<std::wstring> command_line);
 	[[nodiscard]] std::wstring get_selected_module() const;
 	[[nodiscard]] std::wstring get_selected_sub_modules() const;
 protected:
@@ -38,7 +39,7 @@ protected:
 	/// <summary>
 	/// Reads all sources of ConfigurationDefinition
 	/// </summary>
-	void read_configurations();
+	bool read_configurations();
 	/// <summary>
 	/// Creates all of the Windows
 	/// </summary>
@@ -48,7 +49,11 @@ protected:
 	/// Shows all windows
 	/// </summary>
 	void show_all();
+public:
+	[[nodiscard]] json::Object to_json_object() const override;
+	void from_json_object(const json::Object& object) override;
 private:
+	HWND h_wnd_ = nullptr;
 	bool b_button_down_ = false;
 	std::wstring selected_module_;
 	std::wstring selected_sub_modules_;

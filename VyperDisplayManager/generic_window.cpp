@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "globals.h"
+#include "json_check.h"
+#include "Location.h"
 #include "generic_window.h"
 
 #include <windowsx.h>
@@ -51,6 +53,16 @@ std::wstring generic_window::get_last_error_string(DWORD const dw_error_code)
 LRESULT generic_window::on_mouse_wheel(unsigned short const f_keys, short const wheel_delta, int const x_pos, int const y_pos) const
 {
     return 0;
+}
+
+generic_window::generic_window(const generic_window& copy)
+{
+    *this = copy;
+}
+
+generic_window::generic_window(const generic_window&& move) noexcept
+{
+    *this = move;
 }
 
 LRESULT generic_window::real_wnd_proc(const HWND h_window, const UINT msg, const WPARAM w_param, const LPARAM l_param)
@@ -190,6 +202,64 @@ HWND generic_window::get_window_handle() const
     return h_wnd_;
 }
 
+bool generic_window::operator==(const HWND& ref) const
+{
+    return this->get_window_handle() == ref;
+}
+
+bool generic_window::operator!=(const HWND& ref) const
+{
+    return this->get_window_handle() != ref;
+}
+
+bool generic_window::operator==(const generic_window& ref) const
+{
+    return this->get_window_handle() == ref.get_window_handle();
+}
+
+bool generic_window::operator!=(const generic_window& ref) const
+{
+    return this->get_window_handle() != ref.get_window_handle();
+}
+
+generic_window& generic_window::operator=(const generic_window& source)  // NOLINT(cert-oop54-cpp)
+{
+    if (*this == source)
+        return *this;
+	
+    h_wnd_ = source.get_window_handle();
+    SetWindowLongPtr(h_wnd_, GWLP_USERDATA, reinterpret_cast<long>(this));
+    return *this;
+}
+
+generic_window& generic_window::operator=(generic_window&& move) noexcept
+{
+    *this = move;
+    SetWindowLongPtr(h_wnd_, GWLP_USERDATA, reinterpret_cast<long>(this));
+    return *this;
+}
+
+generic_window& generic_window::operator=(const HWND& ref)
+{
+    h_wnd_ = ref;
+    SetWindowLongPtr(h_wnd_, GWLP_USERDATA, reinterpret_cast<long>(this));
+    return *this;
+}
+
+bool generic_window::draw_line(const location& from, const location& to, const COLORREF color, const int pen_style, const int thickness) const
+{
+    PAINTSTRUCT ps;
+    POINT dest;
+    COLORREF old_color;
+    const auto hdc = BeginPaint(h_wnd_, &ps);
+    const auto new_pen = CreatePen(pen_style, thickness, color);
+    const auto old_pen = static_cast<HPEN>(SelectObject(hdc, new_pen));
+    MoveToEx(hdc, from.get_x(), from.get_y(), &dest);
+    LineTo(hdc, to.get_x(), to.get_y());
+    SelectObject(hdc, old_pen);
+    DeleteObject(new_pen);
+    return EndPaint(h_wnd_, &ps);
+}
 
 LRESULT generic_window::on_create_window(HINSTANCE h_instance, const HWND h_wnd)
 {
@@ -307,4 +377,14 @@ LRESULT generic_window::on_mouse_left_double_click(const WPARAM w_param, const L
 LRESULT generic_window::on_mouse_right_double_click(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const
 {
     return on_default_mouse(WM_RBUTTONDBLCLK, w_param, l_param);
+}
+
+int generic_window_impl::on_paint()
+{
+	return 0;
+}
+
+LRESULT generic_window_impl::on_mouse_right_up(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const
+{
+	return LRESULT();
 }

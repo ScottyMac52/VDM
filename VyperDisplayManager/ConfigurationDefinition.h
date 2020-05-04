@@ -18,10 +18,10 @@ class configuration_definition :
 	public offset_geometry
 {
 public:
-	configuration_definition();
+	configuration_definition(const location& start_location);
 	configuration_definition(const configuration_definition& source);
 	configuration_definition(configuration_definition&& source) noexcept;
-	configuration_definition(LPCWSTR name, LPCWSTR file_path, LPCWSTR file_name, float opacity, const area& image_area, const area& cropping_area);
+	configuration_definition(const LPCWSTR name, const location& start_location, const LPCWSTR file_path, const LPCWSTR file_name, const float opacity, const area& image_area, const area& cropping_area);
 	~configuration_definition();
 	[[nodiscard]] std::wstring to_string() const override;
 	[[nodiscard]] std::wstring get_name() const;
@@ -32,7 +32,9 @@ public:
 	bool draw(HWND h_wnd, HDC h_wnd_dc) const;
 	[[nodiscard]] HWND get_window() const;
 	configuration_definition& operator=(const configuration_definition& source);
-	configuration_definition& operator=(json::Object object);
+	configuration_definition& operator=(configuration_definition&& move) noexcept;
+	configuration_definition& operator=(const json::Object& object);
+	configuration_definition& operator=(const location& new_location);
 	bool operator==(const configuration_definition& other) const;
 	bool operator!=(const configuration_definition& other) const;
 	[[nodiscard]] std::wstring get_file_path() const;
@@ -44,6 +46,7 @@ public:
 	virtual void from_json_object(const json::Object& object) override;
 	configuration_definition& operator=(const display_configuration& current_display);
 protected:
+	void show_ruler(Graphics *g) const;
 private:
 	std::wstring module_name_;
 	std::wstring name_;
@@ -51,8 +54,13 @@ private:
 	std::wstring file_path_;
 	std::wstring throttle_type_;
 	std::wstring ruler_name_;
+	bool show_rulers_ = false;
+	int ruler_size_ = 0;
+	int ruler_major_size_ = 0;
+	int ruler_minor_size_ = 0;
 	bool enabled_ = false;
-	HWND h_wnd_{};
+	HWND h_wnd_ = nullptr;
 	image_config_map image_map_;
+	location relative_location_;
 };
 

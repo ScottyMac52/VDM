@@ -3,6 +3,8 @@
 class json_check
 {
 public:
+	json_check() = default;
+	virtual ~json_check() = default;
 	/// <summary>
 	/// Pure virtual to_json_object() makes class abstract
 	/// </summary>
@@ -13,7 +15,15 @@ public:
 	/// </summary>
 	/// <param name="object"></param>
 	virtual void from_json_object(const json::Object& object) = 0;
+	/// <summary>
+	/// can be overriden to return a json Array, default returns an empty one
+	/// </summary>
+	/// <returns></returns>
 	virtual json::Array to_json_array();
+	/// <summary>
+	/// Can be overridden to set vales from a json Array, default is NoOp
+	/// </summary>
+	/// <param name="array"></param>
 	virtual void from_json_array(const json::Array& array);
 	/// <summary>
 	/// Checks to see if named property exists in json Object

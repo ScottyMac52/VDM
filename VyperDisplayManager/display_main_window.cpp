@@ -10,6 +10,8 @@
 #include "ConfigurationDefinition.h"
 #include "display_main_window.h"
 #include <cwctype>
+
+#include "app_settings.h"
 #include "FileChecker.h"
 #include "DisplayManager.h"
 #include "input_parser.h"
@@ -20,11 +22,9 @@ using namespace  std;
 int display_main_window::on_paint()
 {
 	PAINTSTRUCT ps;
+	const auto settings = app_settings::get_instance();
 	const auto hdc = BeginPaint(h_wnd_, &ps);
-	wstring status_text = L"Width: ";
-	status_text.append(std::to_wstring(current_width_));
-	status_text.append(L" Height: ");
-	status_text.append(std::to_wstring(current_height_));
+	const auto status_text = settings.get_display_file_name();
 	draw_status_text(hdc, status_text.c_str(), false);
 	EndPaint(h_wnd_, &ps);
 	return 0;
@@ -105,8 +105,13 @@ LRESULT display_main_window::on_create_window(const HINSTANCE h_instance, HWND h
 		return false;
 	}
 	p_display_manager = new display_manager();
-	p_display_manager->run(h_instance, h_wnd_, app_->get_command_line());
-	return true;
+	if (!p_display_manager->run(h_instance, h_wnd_, app_->get_command_line()))
+	{
+		close();
+		return false;
+	}
+	else
+		return true;
 }
 
 LRESULT display_main_window::on_size(WPARAM w_param, LPARAM l_param)
@@ -126,8 +131,7 @@ bool display_main_window::create(const HINSTANCE h_instance, std::wstring class_
 	// Extended window  creation
 	h_wnd_ = ::CreateWindowExW(WS_EX_TOPMOST | WS_EX_WINDOWEDGE, class_name.c_str(), class_name.c_str(), WS_CAPTION | WS_SYSMENU,
 		p_client_area_->get_left(), p_client_area_->get_top(), p_client_area_->get_width(), p_client_area_->get_height(), parent, nullptr, h_instance, nullptr);
-
-
+	
 	if (h_wnd_ == nullptr)
 	{
 		const auto last_error = GetLastError();

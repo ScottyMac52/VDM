@@ -12,6 +12,8 @@
 
 #include <windowsx.h>
 
+#include "app_settings.h"
+
 using namespace Gdiplus;
 ULONG_PTR m_gdiplusToken;
 
@@ -45,10 +47,11 @@ bool display_window::create(HINSTANCE h_instance, std::wstring class_name, HWND 
     Gdiplus::GdiplusStartupInput gdiplus_startup_input;
     GdiplusStartup(&m_gdiplusToken, &gdiplus_startup_input, nullptr);
 
-    //auto reg_status = register_class(h_instance, class_name, 0, IDC_ARROW, IDC_VYPERDISPLAYWINDOW);
-    auto reg_status = register_class(h_instance, class_name, 0, IDC_ARROW, 0);
+    const auto show_menu = app_settings::show_configuration_menu();
 
-    h_wnd_ = ::CreateWindowExW(WS_EX_TOPMOST, class_name.c_str(), class_name.c_str(), WS_POPUP,
+    register_class(h_instance, class_name, 0, IDC_ARROW, show_menu ? IDC_VYPERDISPLAYWINDOW : 0);
+    
+    h_wnd_ = ::CreateWindowExW(WS_EX_TOPMOST | WS_EX_TRANSPARENT, class_name.c_str(), class_name.c_str(), WS_POPUP | WS_EX_TRANSPARENT,
         p_config_->get_left(), p_config_->get_top(), p_config_->get_width(), p_config_->get_height(), parent,nullptr, h_instance, nullptr);
 
     if (h_wnd_ == nullptr)
@@ -117,7 +120,7 @@ LRESULT display_window::on_mouse_move(const WPARAM w_param, const LPARAM l_param
 	{
         if(p_config_ != nullptr)
         {
-	        p_config_->set_location(location(x_pos, y_pos));
+	        *p_config_ = location(x_pos, y_pos);
             GetClientRect(h_wnd_, &client_rect);
             return InvalidateRect(h_wnd_, &client_rect, true);
         }
@@ -140,4 +143,5 @@ LRESULT display_window::on_mouse_right_down(const WPARAM w_param, const LPARAM l
     GetClientRect(h_wnd_, &client_rect);
     return InvalidateRect(h_wnd_, &client_rect, true);
 }
+
 

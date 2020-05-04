@@ -237,7 +237,7 @@ module_definition& module_definition::operator=(const json::Object& object)
 		for (auto it = configurations.begin(); it != configurations.end(); ++it)
 		{
 			Object& member = *it;
-			configuration_definition def;
+			configuration_definition def(location(0,0));
 			def = member;
 			add_configuration(def);
 		}

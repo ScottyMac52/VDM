@@ -16,6 +16,8 @@
 #include "ImageConfiguration.h"
 #include "ConfigurationDefinition.h"
 #include <iterator>
+
+#include "app_settings.h"
 #include "resource.h"
 #include "generic_window.h"
 #include "display_main_window.h"
@@ -26,6 +28,20 @@ static wchar_t sz_atom_name[] = L"<VDMApp>{D0F77DD9-E743-4C1E-8BB6-075D55F585BE}
 ATOM atom;
 
 using namespace std;
+
+std::wstring app_settings::file_path_;
+std::wstring app_settings::file_spec_;
+bool app_settings::save_cropped_images_;
+bool app_settings::show_tool_tips_;
+bool app_settings::turn_off_cache_;
+bool app_settings::show_rulers_;
+int app_settings::ruler_size_;
+int app_settings::ruler_major_width_;
+int app_settings::ruler_minor_width_;
+bool app_settings::use_cougar_;
+bool app_settings::show_configuration_menu_;
+std::wstring app_settings::display_config_file_ = L"displays.json";
+
 
 /// <summary>
 /// WinMain : Entry point, minimized
@@ -78,6 +94,10 @@ main::main(LPWSTR lp_cmd_line)  // NOLINT(bugprone-exception-escape)
 int main::run(const HINSTANCE h_instance, LPCWSTR command_line)
 {
     MSG msg;
+
+    auto settings = app_settings::get_instance();
+    // ReSharper disable once StringLiteralTypo
+    settings.from_file(L"appsettings.json");
 
 	p_main_window = new display_main_window(this);
     std::wstring class_name = L"MainWindow";

@@ -16,11 +16,16 @@ protected:
 	[[nodiscard]] LRESULT on_mouse_move(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const override;
 	LRESULT on_mouse_left_down(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) override;
 	LRESULT on_mouse_right_down(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) override;
+	void show_ruler(const HDC& hdc) const;
 private:
 	/// <summary>
 	/// Pointer to the ConfigurationDefinition
 	/// </summary>
 	configuration_definition *p_config_;
 	bool b_button_down_ = false;
+	bool show_rulers_ = false;
+	int ruler_size_ = 0;
+	int ruler_major_size_ = 0;
+	int ruler_minor_size_ = 0;
 };
 

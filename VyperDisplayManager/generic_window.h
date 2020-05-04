@@ -7,6 +7,9 @@ using namespace std;
 /// </summary>
 LRESULT CALLBACK wnd_proc_generic(HWND h_wnd, UINT message, WPARAM w_param, LPARAM l_param);
 
+/// <summary>
+/// generic window class for all windows
+/// </summary>
 class generic_window
 {
 public:
@@ -14,6 +17,17 @@ public:
 	/// Ctor default
 	/// </summary>
 	generic_window() = default;
+	/// <summary>
+	/// copy ctor
+	/// </summary>
+	/// <param name="copy"></param>
+	generic_window(const generic_window& copy);
+	/// <summary>
+	/// move ctor
+	/// </summary>
+	/// <param name="move"></param>
+	/// <returns></returns>
+	generic_window(const generic_window&& move) noexcept;
 	/// <summary>
 	/// Destructor default
 	/// </summary>
@@ -73,6 +87,58 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	[[nodiscard]] HWND get_window_handle() const;
+	/// <summary>
+	/// equality operator for HWND
+	/// </summary>
+	/// <param name="ref"></param>
+	/// <returns></returns>
+	bool operator==(const HWND& ref) const;
+	/// <summary>
+	/// inequality operator for HWND
+	/// </summary>
+	/// <param name="ref"></param>
+	/// <returns></returns>
+	bool operator!=(const HWND& ref) const;
+	/// <summary>
+	/// equality operator for generic_window
+	/// </summary>
+	/// <param name="ref"></param>
+	/// <returns></returns>
+	bool operator==(const generic_window& ref) const;
+	/// <summary>
+	/// inequality operator for generic_window
+	/// </summary>
+	/// <param name="ref"></param>
+	/// <returns></returns>
+	bool operator!=(const generic_window& ref) const;
+	/// <summary>
+	/// copy assignment operator for generic_window
+	/// </summary>
+	/// <param name="source"></param>
+	/// <returns></returns>
+	generic_window& operator=(const generic_window& source);
+	/// <summary>
+	/// move assignment operator for generic_window
+	/// </summary>
+	/// <param name="move"></param>
+	/// <returns></returns>
+	generic_window& operator=(generic_window&& move) noexcept;
+	/// <summary>
+	/// copy assignment operator for HWND
+	/// </summary>
+	/// <param name="ref"></param>
+	/// <returns></returns>
+	generic_window& operator=(const HWND& ref);
+	/// <summary>
+	/// draws a line from one point to another in the current window
+	/// </summary>
+	/// <param name="from"></param>
+	/// <param name="to"></param>
+	/// <param name="color"></param>
+	/// <param name="pen_style"></param>
+	/// <param name="thickness"></param>
+	/// <returns></returns>
+	bool draw_line(const location& from, const location& to, const COLORREF color, const int pen_style, const int thickness) const;
 protected:
 	/// <summary>
 	/// Used to get the wide string version of GetLastError()
@@ -136,20 +202,124 @@ protected:
 	/// <param name="l_param"></param>
 	/// <returns></returns>
 	virtual LRESULT on_activate_app(WPARAM w_param, LPARAM l_param);
+	/// <summary>
+	/// WM_POSITION_CHANGING
+	/// </summary>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_window_position_changing(LPARAM l_param);
+	/// <summary>
+	/// WM_POSITIONED_CHANGED
+	/// </summary>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_window_position_changed(LPARAM l_param);
+	/// <summary>
+	/// WM_SIZING
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_sizing(WPARAM w_param, LPARAM l_param);
+	/// <summary>
+	/// WM_SIZE
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_size(WPARAM w_param, LPARAM l_param);
+	/// <summary>
+	/// WM_SHOW
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_show(WPARAM w_param, LPARAM l_param);
+	/// <summary>
+	/// WM_QUIT
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <returns></returns>
 	virtual LRESULT on_quit(WPARAM w_param);
+	/// <summary>
+	/// WM_MOUSE_WHEEL
+	/// </summary>
+	/// <param name="f_keys"></param>
+	/// <param name="wheel_delta"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_wheel(unsigned short const f_keys, short const wheel_delta, int const x_pos, int const y_pos) const;
+	/// <summary>
+	/// WM_MOUSE_MOVE
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_move(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const;
+	/// <summary>
+	/// WM_LBUTTONDOWN
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	virtual LRESULT on_mouse_left_down(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos);
+	/// <summary>
+	/// WM_RBBUTTONDOWN
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	virtual LRESULT on_mouse_right_down(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos);
+	/// <summary>
+	/// WM_LBBUTTONUP
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_left_up(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const;
+	/// <summary>
+	/// WM_RBBUTTONUP
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_right_up(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const;
+	/// <summary>
+	/// WM_LBDBLCLICK
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_left_double_click(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const;
+	/// <summary>
+	/// WM_RBDBLCLICK
+	/// </summary>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <param name="x_pos"></param>
+	/// <param name="y_pos"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_mouse_right_double_click(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const;
+	/// <summary>
+	/// The default mouse when the others are not overridden
+	/// </summary>
+	/// <param name="msg"></param>
+	/// <param name="w_param"></param>
+	/// <param name="l_param"></param>
+	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_default_mouse(const UINT msg, const WPARAM w_param, const LPARAM l_param) const;
 	/// <summary>
 	/// Can be used to process any other main messages that are not handled by default
@@ -159,6 +329,18 @@ protected:
 	/// <param name="l_param"></param>
 	/// <returns></returns>
 	[[nodiscard]] virtual LRESULT on_custom_message(const UINT msg, const WPARAM w_param, const LPARAM l_param) const;
-	HWND h_wnd_;
+	/// <summary>
+	/// Handle to the window
+	/// </summary>
+	HWND h_wnd_ = nullptr;
+};
+
+class generic_window_impl : public generic_window
+{
+protected:
+	virtual int on_paint() override;
+	[[nodiscard]] virtual LRESULT on_mouse_right_up(const WPARAM w_param, const LPARAM l_param, const int x_pos, const int y_pos) const override;
+public:
+	
 };
 
